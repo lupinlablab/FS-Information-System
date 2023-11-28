@@ -35,7 +35,7 @@ session_start();
 
   <?php
 
-            $sql = "SELECT * FROM faculties";
+            $sql = "SELECT * FROM faculties ORDER BY id DESC";
 
             $result = mysqli_query($conn,$sql);
 
