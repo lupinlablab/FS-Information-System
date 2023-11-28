@@ -12,11 +12,13 @@
 
 <h1 style = "display: flex; justify-content:center; font-size: 50px; margin-top: 50px;">LOGS</h1>
 
-<table class="table table-dark" style = "width: 900px; margin-top: 50px; position:relative; left: 190px; ">
-  <thead>
+<table class="table" style = "width: 900px; margin-top: 50px; position:relative; left: 190px; ">
+  <thead class = "table-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Logs</th>
+      <th scopf="col">Logs </th>
+      <th scope="col">date</th>
+      <th scope="col">time</th>
     
     </tr>
   </thead>
@@ -24,7 +26,7 @@
   <?php
   include("connection.php");
 
-    $sql = "SELECT * FROM logs";
+    $sql = "SELECT * FROM logs ORDER  BY id DESC";
     $result = mysqli_query($conn,$sql);
 
     $number = 1;
@@ -35,9 +37,13 @@
             <tr>
             <td>'.$test['id'].'</td>
             <td>'.$test['log_info'].'</td>
+            <td>'.date('F j,Y',strtotime($test['date'])).'</td>
+            <td>'.date('g:A',strtotime($test['time'])).'</td>
+        
         
           </tr>
       ';
+      $number++;
 
     }
 
@@ -46,7 +52,7 @@
   
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
-  <a class="btn btn-primary" href="/Staff&Faculty/Admin/mainpage.php" role="button">Home</a>
+   
+  <a class="btn btn-primary" href="/Staff-Faculty/Admin/mainpage.php" role="button">Home</a>
 </body>
 </html>

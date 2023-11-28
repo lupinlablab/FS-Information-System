@@ -12,8 +12,15 @@
 
             while($test = mysqli_fetch_assoc($result)){
                     if($username == "admin"){
-                            if($password == "admin"){
-                                    header("Location: Admin/mainpage.php");
+                    if($password == "admin"){
+
+                        $_SESSION['admin']= 1;
+                        $info = "admin:Administrator logged in!";
+                        $sqlForLog = "INSERT INTO logs(log_info)VALUES ('$info')";
+                        mysqli_query($conn,$sqlForLog);
+                        
+                        header("Location: Admin/mainpage.php");
+                        break;
                             }
                     }else{
                         if($test['username'] == $username){
@@ -28,15 +35,21 @@
                                 $sqlForLog = "INSERT INTO logs (log_info) VALUES ('$info')";
                                 mysqli_query($conn,$sqlForLog);
 
-                                header("Location: User/user-mainpage.php");
-                                   
+                                header("Location: User/user-mainpage.php"); 
                             }
                         }
                     }
             }
-
-        
         }
+        if(isset($_SESSION['admin'])){
+            header("Location: Admin/mainpage.php");
+            exit();
+        }
+        elseif(isset($_SESSION['user_id'])){
+            header("Location: User/user-mainpage.php"); 
+            exit();
+        }
+    
 ?>
 
 <!DOCTYPE html>
