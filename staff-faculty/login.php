@@ -14,7 +14,7 @@
                     if($username == "admin"){
                     if($password == "admin"){
 
-                        $_SESSION['admin']= 1 ;
+                        $_SESSION['admin']= 1;
                         $info = "admin:Administrator logged in!";
                         $sqlForLog = "INSERT INTO logs(log_info)VALUES ('$info')";
                         mysqli_query($conn,$sqlForLog);
