@@ -16,7 +16,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scopf="col">Logs</th>
+      <th scopf="col">Logs </th>
       <th scope="col">date</th>
       <th scope="col">time</th>
     
