@@ -12,8 +12,8 @@
 
 <h1 style = "display: flex; justify-content:center; font-size: 50px; margin-top: 50px;">LOGS</h1>
 
-<table class="table table-dark" style = "width: 900px; margin-top: 50px; position:relative; left: 190px; ">
-  <thead>
+<table class="table" style = "width: 900px; margin-top: 50px; position:relative; left: 190px; ">
+  <thead class = "table-dark">
     <tr>
       <th scope="col">#</th>
       <th scopf="col">Logs </th>
