@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +32,7 @@
 
   <?php
 
-            $sql = "SELECT * FROM staff";
+            $sql = "SELECT * FROM staff ORDER BY id DESC";
 
             $result = mysqli_query($conn,$sql);
 
