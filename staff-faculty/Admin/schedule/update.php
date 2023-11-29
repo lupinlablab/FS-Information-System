@@ -47,7 +47,7 @@ session_start();
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Name</label><br>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="name" required>
+                                <input type="text" class="form-control" name="name"  value="<?php echo $test['name'];?>" required>
                             </div>
                         </div>
                     </div>
