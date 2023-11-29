@@ -21,12 +21,6 @@ session_start();
 </head>
 <body>
 <form action = "schedule.php" method = "post">
-
-<!--Schedule-->
-<!--<div class = "x" style = " display: flex;">
-<input type = "text"  class = "form-control" style = " width:250px;" name = "searchValueUp"> 
-<input type = "button" value = "SEARCH" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#searchBTN">-->
-
 </div>
 
 <div class="schedule_container">
@@ -109,76 +103,5 @@ session_start();
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Search Information</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-                        <?php
-                                if($_SERVER['REQUEST_METHOD'] == "POST"){
-                                        
-                                    $searchValue = isset($_POST['searchValueUp']);
-
-
-                                   
-
-                                    $sql = "SELECT name,position,faculty,time_in,time_out,task FROM schedules WHERE date = '$searchValue'";
-
-                                    $result = mysqli_query($connection,$sql);
-
-                                    echo "
-                                    <table class='table table-bordered table-hover table-striped'>
-                                    <thead class='table-dark'>
-                                      <tr>
-                                        <th scope='col'>name</th>
-                                        <th scope='col'>position</th>
-                                        <th scope='col'>faculty</th>
-                                       
-                                        <th scope='col'>time_in</th>
-                                        <th scope='col'>time_out</th>
-                                        <th scope='col'>task</th>
-                                        
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                    ";
-
-                                    while($test = mysqli_fetch_assoc($result)){
-
-                                        echo'
-                                        <tr>
-                                        <td scope="row">'.$test['name'].'</td>
-                                        <td>'.$test['position'].'</td>
-                                        <td>'.$test['faculty'].'</td>
-                                        
-                                        <td>'.$test['time_in'].'</td>
-                                        <td>'.$test['time_out'].'</td>
-                                        <td>'.$test['task'].'</td>
-                                    
-                                      </tr>
-                                        ';
-                                        
-                                    }
-
-                                    echo '
-                                    
-                                    </tbody>
-                                    </table>
-                                    
-                                    ';
-                                
-                                }
-                        ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
-    
-   
-
-
-</form>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>
