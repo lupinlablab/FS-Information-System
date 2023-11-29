@@ -1,64 +1,65 @@
 <?php
-    include("connection.php");
-    session_start();
+include("connection.php");
+session_start();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_POST["Username"];
-            $password = $_POST["Password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["Username"];
+    $password = $_POST["Password"];
+    $classFS = $_POST['classFS'];
 
-            $sql = "SELECT * FROM registrations";
+    $sql = "SELECT * FROM registrations";
 
-            $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
 
-            while($test = mysqli_fetch_assoc($result)){
-                    if($username == "admin"){
-                            if($password == "admin"){
-                                    header("Location: Admin/mainpage.php");
-                            }
-                    }else{
-                        if($test['username'] == $username){
-                            if($test['password'] == $password){
-                                $_SESSION['user_id'] = $test['id'];
-
-                                $_SESSION['fname'] = $test['first_name'];
-                                $_SESSION['lname'] = $test['last_name'];
-
-
-                                $info = "user: ".$test['first_name']." ".$test['last_name']." logged in!";
-                                $sqlForLog = "INSERT INTO logs (log_info) VALUES ('$info')";
-                                mysqli_query($conn,$sqlForLog);
-
-                                header("Location: User/user-mainpage.php");
-                                   
-                            }
-                        }
-                    }
+    while ($test = mysqli_fetch_assoc($result)) {
+        if ($username == "admin") {
+            if ($password == "admin") {
+                header("Location: Admin/mainpage.php");
             }
+        } else {
+            if ($test['username'] == $username) {
+                if ($test['password'] == $password) {
+                    if ($test['class_type'] == $classFS){
+                    $_SESSION['user_id'] = $test['id'];
 
-        
+   No                 $_SESSION['fname'] = $test['first_name'];
+                    $_SESSION['lname'] = $test['last_name'];
+
+
+                    $info = "user: " . $test['first_name'] . " " . $test['last_name'] . " logged in!";
+                    $sqlForLog = "INSERT INTO logs (log_info) VALUES ('$info')";
+                    mysqli_query($conn, $sqlForLog);
+
+                    header("Location: User/user-mainpage.php");
+                }
+            }
+            }
         }
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login form</title>
-    <link rel="stylesheet" href="/Staff&Faculty/css/login.css">
+    <link rel="stylesheet" href="css/login.css">
 
     <!--font style sidemenu_bar-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Nosifer&family=Playfair+Display&display=swap" rel="stylesheet">
+    </head>
 
-</head>
 <body>
 
     <div class="login">
         <h3>Login</h3>
 
-        <form action = "login.php" method = "post">
+        <form action="login.php" method="post">
             <div class="input_box">
                 <input type="text" placeholder="Username" name="Username" autocomplete="off" required>
             </div>
@@ -66,19 +67,28 @@
             <div class="input_box">
                 <input type="password" placeholder="Password" name="Password" autocomplete="off" required>
             </div>
-            
+
+            <div class="form-group mt-3">
+                <label>Classification</label>
+                <select class="form-control border border-info" id="classFS" name="classFS" required>
+                    <option value="faculty">Faculty</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
+
             <div>
-                <button type="submit" class="button">Login</button>
+                <button type="submit" class="button mt-3">Login</button>
             </div>
 
             <div class="link">
             <p>
-             Not yet Registered?<a href="signup.php">&nbsp;Sign Up</a>
-            </p>
+                    Not yet Registered?<a href="signup.php">&nbsp;Sign Up</a>
+                </p>
             </div> <br>
         </form>
     </div>
 
 
 </body>
+
 </html>
